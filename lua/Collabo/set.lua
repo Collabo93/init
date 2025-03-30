@@ -44,3 +44,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+local default_path = vim.fn.expand("~/AppData/Local/nvim")
+vim.api.nvim_set_current_dir(default_path)

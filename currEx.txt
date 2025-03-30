@@ -1,0 +1,1 @@
+rg -g '!{**/node_modules/*,**/.git/*}' -w '(--|//|#|/\*)\s*(TODO|ERROR|FIX|FIXME|BUG):\s*' ~/.config ~/Code --hidden --follow --sortr modified --no-heading --color never --with-filename --line-number --column
