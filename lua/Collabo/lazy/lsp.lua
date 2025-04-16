@@ -4,6 +4,8 @@ return {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        "williamboman/mason.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         "neovim/nvim-lspconfig", -- official quickstart config
         "hrsh7th/nvim-cmp", -- completion engine
         "hrsh7th/cmp-nvim-lsp", -- let complete engine use lsp
@@ -35,7 +37,6 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "ts_ls",
-                -- "prettier"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -75,6 +76,13 @@ return {
                     }
                 end,
             }
+        })
+        require("mason-tool-installer").setup({
+            ensure_installed = {
+                "eslint_d",
+                "stylua",
+                "prettier",
+            },
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }

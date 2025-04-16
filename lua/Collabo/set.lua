@@ -6,10 +6,10 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- os and vim have synced clipboard
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Sgin colum on
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- only split right
 vim.opt.splitright = true
@@ -42,8 +42,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"
 
 local default_path = vim.fn.expand("~/AppData/Local/nvim")
 vim.api.nvim_set_current_dir(default_path)

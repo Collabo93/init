@@ -19,14 +19,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- Open/Close splits screen, based on if there is already one
 vim.keymap.set("n", "<leader>v", function()
-    local window_count = #vim.api.nvim_list_wins()
-    if window_count == 1 then
         vim.cmd("wincmd v")
         vim.cmd("wincmd l")
-    else
-        vim.cmd("wincmd l") 
-        vim.cmd("wincmd q")
-    end
 end, { desc = "Move focus to the left window or close the right window" })
 
 -- move between splits

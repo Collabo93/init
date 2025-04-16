@@ -3,17 +3,17 @@ local function buildRgCmd(opts)
 
     if opts.match_comment_symbols then
         expression = [[(]]
-        .. table.concat(opts.comment_symbols, "|")
-        .. [[)\s*(]]
-        .. table.concat(opts.sign_list, "|")
-        .. [[):\s*]]
+            .. table.concat(opts.comment_symbols, "|")
+            .. [[)\s*(]]
+            .. table.concat(opts.sign_list, "|")
+            .. [[):\s*]]
     end
 
-    local rg_command = "rg -g \"!{**/node_modules/*,**/.git/*}\" -w \""
-    .. expression
-    .. "\" "
-    .. table.concat(opts.dirs, " ")
-    .. " --hidden --follow --sortr modified --no-heading --color never --with-filename --line-number --column"
+    local rg_command = 'rg -g "!{**/node_modules/*,**/.git/*}" -w "'
+        .. expression
+        .. '" '
+        .. table.concat(opts.dirs, " ")
+        .. " --hidden --follow --sortr modified --no-heading --color never --with-filename --line-number --column"
 
     return rg_command
 end
@@ -80,8 +80,18 @@ return {
                         { key = "r", hidden = true, action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         { key = "g", hidden = true, action = ":lua Snacks.dashboard.pick('live_grep')" },
                         { key = "s", hidden = true, section = "session" },
-                        { key = "L", hidden = true, action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-                        { key = "q", hidden = true, action = ":qa", enabled = package.loaded.lazy ~= nil },
+                        {
+                            key = "L",
+                            hidden = true,
+                            action = ":Lazy",
+                            enabled = package.loaded.lazy ~= nil,
+                        },
+                        {
+                            key = "q",
+                            hidden = true,
+                            action = ":qa",
+                            enabled = package.loaded.lazy ~= nil,
+                        },
                     },
                 },
             },
@@ -89,10 +99,10 @@ return {
                 key = { "" },
                 file = function(item)
                     return {
-                        { item.key, hl = "key" },
+                        { item.key,                           hl = "key" },
                         { " " },
                         { item.file:sub(2):match("^(.*[/])"), hl = "NonText" },
-                        { item.file:match("([^/]+)$"), hl = "Normal" },
+                        { item.file:match("([^/]+)$"),        hl = "Normal" },
                     }
                 end,
                 icon = { "" },
@@ -105,7 +115,8 @@ return {
                     pane = 1,
                     section = "terminal",
                     -- cmd = "img2art ~/AppData/local/nvim/lua/Collabo/dashboard_img/hq.png --threshold 50 --scale .34 --quant 16 --with-color",
-                    cmd = "",
+                    -- cmd = "C:\\Users\\bless\\AppData\\Local\\nvim\\lua\\Collabo\\dashboard_img\\test.txt",
+                    cmd = "cmd /C type C:\\Users\\bless\\AppData\\Local\\nvim\\lua\\Collabo\\dashboard_img\\test.txt",
                     height = 27,
                     width = 100,
                     indent = 20,
@@ -117,38 +128,38 @@ return {
                         { text = "" },
                         {
                             text = {
-                                { "n ", hl = "key" },
-                                { "New file", hl = "Normal" },
-                                { "", width = 10 },
-                                { "r ", hl = "key" },
+                                { "n ",           hl = "key" },
+                                { "New file",     hl = "Normal" },
+                                { "",             width = 10 },
+                                { "r ",           hl = "key" },
                                 { "Recent files", hl = "Normal" },
                             },
                         },
                         { text = "", padding = 1 },
                         {
                             text = {
-                                { "o ", hl = "key" },
+                                { "o ",        hl = "key" },
                                 { "Open file", hl = "Normal" },
-                                { "", width = 9 },
-                                { "g ", hl = "key" },
+                                { "",          width = 9 },
+                                { "g ",        hl = "key" },
                                 { "Grep text", hl = "Normal" },
                             },
                         },
                         { text = "", padding = 1 },
                         {
                             text = {
-                                { "f ", hl = "key" },
-                                { "Find files", hl = "Normal" },
-                                { "", width = 8 },
-                                { "s ", hl = "key" },
+                                { "f ",              hl = "key" },
+                                { "Find files",      hl = "Normal" },
+                                { "",                width = 8 },
+                                { "s ",              hl = "key" },
                                 { "Restore session", hl = "Normal" },
                             },
                         },
                     },
-                    { text = "", padding = 2 },
-                    { title = "Projects", padding = 1, indent = 21 },
-                    { section = "projects", limit = 5, padding = 2, indent = 20 },
-                    { title = "TODO List", padding = 1, indent = 21 },
+                    { text = "",            padding = 2 },
+                    { title = "Projects",   padding = 1, indent = 21 },
+                    { section = "projects", limit = 5,   padding = 2, indent = 20 },
+                    { title = "TODO List",  padding = 1, indent = 21 },
                     {
                         indent = 21,
                         function()
@@ -165,7 +176,7 @@ return {
                                 return {
                                     autokey = true,
                                     text = {
-                                        { tostring(todo.index) .. " ", hl = "key" },
+                                        { tostring(todo.index) .. " ",                  hl = "key" },
                                         { todo.sign .. string.rep(" ", 7 - #todo.sign), hl = "NonText" },
                                         {
                                             (todo.desc:len() > 35) and todo.desc:sub(1, 35) .. "" or todo.desc,
@@ -175,7 +186,7 @@ return {
                                     action = function()
                                         vim.fn.chdir(todo.file:match("^(.*[\\/])[^\\/]+$")) -- :cd into dir
                                         vim.cmd("edit " .. todo.file) -- open file
-                                        vim.cmd(todo.line) -- go to line
+                                        vim.cmd(todo.line)    -- go to line
                                     end,
                                 }
                             end, todos)
@@ -189,6 +200,7 @@ return {
         notifier = { enabled = true },
         quickfile = { enabled = true },
         statuscolumn = { enabled = true },
+        scroll = { enabled = false },
         words = { enabled = true },
     },
     config = function(_, opts)
