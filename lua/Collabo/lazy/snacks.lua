@@ -114,48 +114,46 @@ return {
                 {
                     pane = 1,
                     section = "terminal",
-                    -- cmd = "img2art ~/AppData/local/nvim/lua/Collabo/dashboard_img/hq.png --threshold 50 --scale .34 --quant 16 --with-color",
-                    -- cmd = "C:\\Users\\bless\\AppData\\Local\\nvim\\lua\\Collabo\\dashboard_img\\test.txt",
-                    cmd = "cmd /C type C:\\Users\\bless\\AppData\\Local\\nvim\\lua\\Collabo\\dashboard_img\\test.txt",
+                    cmd = "cmd /C type C:\\Users\\bless\\AppData\\Local\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
                     height = 27,
                     width = 100,
-                    indent = 20,
+                    indent = 30,
                 },
                 {
                     pane = 2,
                     indent = 21,
-                    {
-                        { text = "" },
-                        {
-                            text = {
-                                { "n ",           hl = "key" },
-                                { "New file",     hl = "Normal" },
-                                { "",             width = 10 },
-                                { "r ",           hl = "key" },
-                                { "Recent files", hl = "Normal" },
-                            },
-                        },
-                        { text = "", padding = 1 },
-                        {
-                            text = {
-                                { "o ",        hl = "key" },
-                                { "Open file", hl = "Normal" },
-                                { "",          width = 9 },
-                                { "g ",        hl = "key" },
-                                { "Grep text", hl = "Normal" },
-                            },
-                        },
-                        { text = "", padding = 1 },
-                        {
-                            text = {
-                                { "f ",              hl = "key" },
-                                { "Find files",      hl = "Normal" },
-                                { "",                width = 8 },
-                                { "s ",              hl = "key" },
-                                { "Restore session", hl = "Normal" },
-                            },
-                        },
-                    },
+                    -- {
+                    --     { text = "" },
+                    --     {
+                    --         text = {
+                    --             { "n ",           hl = "key" },
+                    --             { "New file",     hl = "Normal" },
+                    --             { "",             width = 10 },
+                    --             { "r ",           hl = "key" },
+                    --             { "Recent files", hl = "Normal" },
+                    --         },
+                    --     },
+                    --     { text = "", padding = 1 },
+                    --     {
+                    --         text = {
+                    --             { "o ",        hl = "key" },
+                    --             { "Open file", hl = "Normal" },
+                    --             { "",          width = 9 },
+                    --             { "g ",        hl = "key" },
+                    --             { "Grep text", hl = "Normal" },
+                    --         },
+                    --     },
+                    --     { text = "", padding = 1 },
+                    --     {
+                    --         text = {
+                    --             { "f ",              hl = "key" },
+                    --             { "Find files",      hl = "Normal" },
+                    --             { "",                width = 8 },
+                    --             { "s ",              hl = "key" },
+                    --             { "Restore session", hl = "Normal" },
+                    --         },
+                    --     },
+                    -- },
                     { text = "",            padding = 2 },
                     { title = "Projects",   padding = 1, indent = 21 },
                     { section = "projects", limit = 5,   padding = 2, indent = 20 },

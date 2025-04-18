@@ -13,5 +13,5 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = "Collabo.lazy",
-    change_detection = { notify = false }
+    change_detection = { notify = false },
 })
