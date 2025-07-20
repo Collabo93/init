@@ -43,5 +43,5 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-local default_path = vim.fn.expand("~/AppData/Local/nvim")
+local default_path = vim.fn.expand("~/AppData/local/nvim")
 vim.api.nvim_set_current_dir(default_path)

@@ -1,18 +1,15 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "williamboman/mason.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "neovim/nvim-lspconfig", -- official quickstart config
-        "hrsh7th/nvim-cmp", -- completion engine
-        "hrsh7th/cmp-nvim-lsp", -- let complete engine use lsp
-        "hrsh7th/cmp-nvim-lsp-signature-help", -- auto-hint function arguments
-        "hrsh7th/cmp-buffer", -- autocompletion from buffer
-        "hrsh7th/cmp-path", -- automcpletion file system paths
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+        "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
@@ -20,16 +17,16 @@ return {
 
     config = function()
         require("conform").setup({
-            formatters_by_ft = {
-            }
+            formatters_by_ft = {},
         })
-        local cmp = require('cmp')
+        local cmp = require("cmp")
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+            cmp_lsp.default_capabilities()
+        )
 
         require("fidget").setup({})
         require("mason").setup()
@@ -37,12 +34,13 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "ts_ls",
+                "intelephense",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
+                    require("lspconfig")[server_name].setup({
+                        capabilities = capabilities,
+                    })
                 end,
 
                 zls = function()
@@ -59,29 +57,29 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
-
                 end,
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
+                    lspconfig.lua_ls.setup({
                         capabilities = capabilities,
                         settings = {
                             Lua = {
                                 runtime = { version = "Lua 5.1" },
                                 diagnostics = {
                                     globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
+                                },
+                            },
+                        },
+                    })
                 end,
-            }
+            },
         })
         require("mason-tool-installer").setup({
             ensure_installed = {
-                "eslint_d",
+                "eslint",
                 "stylua",
                 "prettier",
+                "intelephense",
             },
         })
 
@@ -90,21 +88,22 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ["<S-k>"] = cmp.mapping.select_prev_item(cmp_select),
+                ["<S-j>"] = cmp.mapping.select_next_item(cmp_select),
+                ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                -- ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
                 { name = "copilot", group_index = 2 },
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
+                { name = "nvim_lsp" },
+                { name = "luasnip" }, -- For luasnip users.
             }, {
-                    { name = 'buffer' },
-                })
+                { name = "buffer" },
+            }),
         })
 
         vim.diagnostic.config({
@@ -118,5 +117,35 @@ return {
                 prefix = "",
             },
         })
-    end
+        local diag_float_win = nil
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            callback = function()
+                if vim.fn.mode() == "n" then
+                    if diag_float_win and vim.api.nvim_win_is_valid(diag_float_win) then
+                        return
+                    end
+
+                    local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+                    if #diagnostics > 0 then
+                        vim.diagnostic.open_float(nil, {
+                            focusable = false,
+                            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                            border = "rounded",
+                            source = "always",
+                            prefix = "",
+                            scope = "line",
+                        })
+
+                        for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+                            if vim.api.nvim_win_get_config(win).relative ~= "" then
+                                diag_float_win = win
+                            end
+                        end
+                    else
+                        diag_float_win = nil
+                    end
+                end
+            end,
+        })
+    end,
 }

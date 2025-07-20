@@ -1,0 +1,11 @@
+-- Live server 
+npm i -g live-server
+
+-- eslint
+npm i --save-dev eslint
+
+-- prettier php support
+npm i --save-dev @prettier/plugin-php
+
+-- nerd font
+https://www.nerdfonts.com/font-downloads

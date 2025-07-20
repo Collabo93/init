@@ -114,7 +114,7 @@ return {
                 {
                     pane = 1,
                     section = "terminal",
-                    cmd = "cmd /C type C:\\Users\\bless\\AppData\\Local\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
+                    cmd = "cmd /C type %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
                     height = 27,
                     width = 100,
                     indent = 30,
@@ -122,38 +122,6 @@ return {
                 {
                     pane = 2,
                     indent = 21,
-                    -- {
-                    --     { text = "" },
-                    --     {
-                    --         text = {
-                    --             { "n ",           hl = "key" },
-                    --             { "New file",     hl = "Normal" },
-                    --             { "",             width = 10 },
-                    --             { "r ",           hl = "key" },
-                    --             { "Recent files", hl = "Normal" },
-                    --         },
-                    --     },
-                    --     { text = "", padding = 1 },
-                    --     {
-                    --         text = {
-                    --             { "o ",        hl = "key" },
-                    --             { "Open file", hl = "Normal" },
-                    --             { "",          width = 9 },
-                    --             { "g ",        hl = "key" },
-                    --             { "Grep text", hl = "Normal" },
-                    --         },
-                    --     },
-                    --     { text = "", padding = 1 },
-                    --     {
-                    --         text = {
-                    --             { "f ",              hl = "key" },
-                    --             { "Find files",      hl = "Normal" },
-                    --             { "",                width = 8 },
-                    --             { "s ",              hl = "key" },
-                    --             { "Restore session", hl = "Normal" },
-                    --         },
-                    --     },
-                    -- },
                     { text = "",            padding = 2 },
                     { title = "Projects",   padding = 1, indent = 21 },
                     { section = "projects", limit = 5,   padding = 2, indent = 20 },
@@ -165,7 +133,9 @@ return {
                                 limit = 5,
                                 match_comment_symbols = true,
                                 comment_symbols = { "--", "//", "#", "/\\*" }, -- we need to escape "*", otherwise it'll match any character in between
-                                dirs = { "C:\\Users\\bless\\AppData\\Local\\nvim" },
+                                dirs = {
+                                    "%LocalAppData%\\nvim",
+                                },
                                 sign_list = { "TODO", "ERROR", "FIX", "FIXME", "BUG" },
                             }
                             local todos = getTodos(todo_opts)
