@@ -110,22 +110,22 @@ return {
                 -- hidden
                 { section = "keys" },
                 -- not hidden
+                -- {
+                --     pane = 1,
+                --     section = "terminal",
+                --     -- cmd = "cmd /C type %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
+                --     -- cmd =
+                --     -- "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\pikachu3.png --threshold 50 --scale .17 --quant 16 --with-color",
+                --     cmd =
+                --     "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\hq.png --threshold 50 --scale .32 --quant 16 --with-color",
+                --     height = 30,
+                --     width = 100,
+                --     -- indent = 40,
+                -- },
+                { section = "header",  pane = 1, padding = { 0, 2 } },
+                { section = "startup", pane = 1 },
                 {
                     pane = 1,
-                    section = "terminal",
-                    -- cmd = "cmd /C type %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
-                    -- cmd =
-                    -- "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\pikachu3.png --threshold 50 --scale .17 --quant 16 --with-color",
-                    cmd =
-                    "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\hq.png --threshold 50 --scale .32 --quant 16 --with-color",
-                    height = 30,
-                    width = 100,
-                    -- indent = 40,
-                },
-                { section = "header",  pane = 2, padding = { 0, 2 } },
-                { section = "startup", pane = 2 },
-                {
-                    pane = 2,
                     indent = 0,
                     { text = "",            padding = 2 },
                     { title = "Projects",   padding = 1, indent = 25 },
