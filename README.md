@@ -142,4 +142,4 @@ Copy the following configuration files into each of your projects to ensure cons
 
 ## Done!
 
-Restart Neovim and enjoy your customized setup!
+Restart Neovim and you're done

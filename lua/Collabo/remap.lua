@@ -1,4 +1,12 @@
-vim.keymap.set("n", "<leader>q", vim.cmd.Ex) -- Weist die Funktion Ex zu
+-- Exit current file and navigate cursor to it
+vim.keymap.set("n", "<leader>q", function()
+    local current_file = vim.fn.expand("%:t")
+    vim.cmd.Ex()
+
+    if current_file ~= "" then
+        vim.fn.search(current_file)
+    end
+end)
 
 -- move highlighted line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

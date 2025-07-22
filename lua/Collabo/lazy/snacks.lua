@@ -31,7 +31,6 @@ local function getTodos(opts)
     local todo_count = 0
     for i, line in pairs(rg_res) do
         todo_count = todo_count + 1
-        -- if todo_count == 1 then break end
         local filename, row, col, text = line:match("^(.+):(%d+):(%d+):(.*)$")
         local sign_sym = ""
 
@@ -114,18 +113,24 @@ return {
                 {
                     pane = 1,
                     section = "terminal",
-                    cmd = "cmd /C type %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
-                    height = 27,
+                    -- cmd = "cmd /C type %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
+                    -- cmd =
+                    -- "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\pikachu3.png --threshold 50 --scale .17 --quant 16 --with-color",
+                    cmd =
+                    "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\hq.png --threshold 50 --scale .32 --quant 16 --with-color",
+                    height = 30,
                     width = 100,
-                    indent = 30,
+                    -- indent = 40,
                 },
+                { section = "header",  pane = 2, padding = { 0, 2 } },
+                { section = "startup", pane = 2 },
                 {
                     pane = 2,
-                    indent = 21,
+                    indent = 0,
                     { text = "",            padding = 2 },
-                    { title = "Projects",   padding = 1, indent = 21 },
-                    { section = "projects", limit = 5,   padding = 2, indent = 20 },
-                    { title = "TODO List",  padding = 1, indent = 21 },
+                    { title = "Projects",   padding = 1, indent = 25 },
+                    { section = "projects", limit = 5,   padding = 2, indent = 25 },
+                    { title = "TODO List",  padding = 1, indent = 25 },
                     {
                         indent = 21,
                         function()
