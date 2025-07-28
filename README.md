@@ -106,28 +106,45 @@ Change the default path Neovim opens in:
 
 #### **6.2 Dashboard Customization**
 
-You can change the displayed repositories and the dashboard image:
+You can change the displayed repositories. The ToDo list will search for Strings in those repositories:
 
 - **Windows:** `%LOCALAPPDATA%\nvim\lua\Collabo\lazy\snacks.lua`
 - **Linux:** `~/.config/nvim/lua/Collabo/lazy/snacks.lua`
 
-1. **Change the Dashboard Image:**
+1.  **Add Your Own Repositories:**
 
     ```lua
-    cmd = "cmd /C type %LOCALAPPDATA%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
-    ```
-
-    Replace the `.ans` file with your own image if desired.
-
-2. **Add Your Own Repositories:**
-
-    ```lua
-    dirs = {
-        "%LOCALAPPDATA%\\nvim",  -- Add more paths here
+    local project_dirs = {
+        os.getenv("LocalAppData") .. "/nvim",
+        -- os.getenv("USERPROFILE") .. "/Documents",
     }
     ```
 
     For Linux, adjust the path accordingly (e.g., `~/.config/nvim`).
+
+---
+
+#### **6.3 Background Image**
+
+By default this setup has transparent background to support a background image of your terminal.
+You have two choices: set a background image, or deactivate the transparent background.
+
+    a) Set a background of your choosing
+    Some examples are in this diretcory:
+
+- **Windows:** `%LOCALAPPDATA%\nvim\lua\Collabo\dashboard_img\`
+- **Linux:** `~/.config/nvim/lua/Collabo/lazy/dashboard_img`
+
+    b) Deactivate the transparent background
+
+- **Windows:** `%LOCALAPPDATA%\nvim\lua\Collabo\lazy\colorschemes.lua`
+- **Linux:** `~/.config/nvim/lua/Collabo/lazy/colorschemes.lua`
+
+    Comment/delet this line:
+
+    ```lua
+    transparent_background = true,
+    ```
 
 ---
 

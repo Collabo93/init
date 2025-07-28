@@ -47,7 +47,6 @@ local toggle_terminal = function()
             vim.cmd.terminal()
         end
 
-        -- Fenster fokussieren und Insert-Modus starten
         vim.api.nvim_set_current_win(state.floating.win)
         vim.cmd.startinsert()
     else
@@ -57,5 +56,5 @@ end
 
 -- Command und Keybinding
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
-vim.keymap.set({ "n", "t" }, "<leader>c", toggle_terminal, { silent = true })
+vim.keymap.set({ "n" }, "<leader>c", toggle_terminal, { silent = true })
 vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })

@@ -1,3 +1,9 @@
+-- change/add your projects here
+local project_dirs = {
+    os.getenv("LocalAppData") .. "/nvim",
+    -- os.getenv("USERPROFILE") .. "/Documents",
+}
+
 local function buildRgCmd(opts)
     local expression = "(" .. table.concat(opts.sign_list, "|") .. "):"
 
@@ -110,39 +116,39 @@ return {
                 -- hidden
                 { section = "keys" },
                 -- not hidden
-                -- {
-                --     pane = 1,
-                --     section = "terminal",
-                --     -- cmd = "cmd /C type %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\ascii-art-try.ans",
-                --     -- cmd =
-                --     -- "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\pikachu3.png --threshold 50 --scale .17 --quant 16 --with-color",
-                --     cmd =
-                --     "img2art %LocalAppData%\\nvim\\lua\\Collabo\\dashboard_img\\hq.png --threshold 50 --scale .32 --quant 16 --with-color",
-                --     height = 30,
-                --     width = 100,
-                --     -- indent = 40,
-                -- },
                 { section = "header",  pane = 1, padding = { 0, 2 } },
-                { section = "startup", pane = 1 },
+                { section = "startup", pane = 1, align = "center" },
                 {
                     pane = 1,
                     indent = 0,
-                    { text = "",            padding = 2 },
-                    { title = "Projects",   padding = 1, indent = 25 },
-                    { section = "projects", limit = 5,   padding = 2, indent = 25 },
-                    { title = "TODO List",  padding = 1, indent = 25 },
+                    { text = "",          padding = 2 },
+                    { title = "Projects", padding = 1, indent = 25, align = "left" },
                     {
-                        indent = 21,
+                        section = "projects",
+                        limit = 5,
+                        padding = 2,
+                        indent = 25,
+                        align = "left",
+                        dirs = project_dirs,
+                    },
+                    {
+                        title = "TODO List",
+                        padding = 1,
+                        indent = 25,
+                        align = "left",
+                    },
+                    {
+                        indent = 26,
+                        align = "left",
                         function()
                             local todo_opts = {
                                 limit = 5,
                                 match_comment_symbols = true,
-                                comment_symbols = { "--", "//", "#", "/\\*" }, -- we need to escape "*", otherwise it'll match any character in between
-                                dirs = {
-                                    "%LocalAppData%\\nvim",
-                                },
+                                comment_symbols = { "--", "//", "#", "/\\*" },
+                                dirs = project_dirs,
                                 sign_list = { "TODO", "ERROR", "FIX", "FIXME", "BUG" },
                             }
+
                             local todos = getTodos(todo_opts)
 
                             return vim.tbl_map(function(todo)
@@ -157,7 +163,7 @@ return {
                                         },
                                     },
                                     action = function()
-                                        vim.fn.chdir(todo.file:match("^(.*[\\/])[^\\/]+$")) -- :cd into dir
+                                        vim.fn.chdir(todo.file:match("^(.*[\\/])[^\\/]+$")) -- cd into directory
                                         vim.cmd("edit " .. todo.file) -- open file
                                         vim.cmd(todo.line)    -- go to line
                                     end,
