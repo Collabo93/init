@@ -40,7 +40,7 @@ vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right
 
 -- show a quick highlight when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking (copying) text",
+    desc = "Highlight when yanking (copying) ",
     group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
     callback = function()
         vim.highlight.on_yank()
@@ -51,3 +51,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.keymap.set("v", "#", function()
     vim.cmd.norm("gc")
 end)
+
+-- bracket and brace selection
+vim.keymap.set("n", "<leader>i", "vi(")
+vim.keymap.set("n", "<leader>o", "vi{")
