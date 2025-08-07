@@ -1,7 +1,6 @@
 -- change/add your projects here
 local project_dirs = {
     os.getenv("LocalAppData") .. "/nvim",
-    -- os.getenv("USERPROFILE") .. "/Documents",
 }
 
 local function buildRgCmd(opts)
