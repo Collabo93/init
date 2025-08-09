@@ -55,3 +55,12 @@ end)
 -- bracket and brace selection
 vim.keymap.set("n", "<leader>i", "vi(")
 vim.keymap.set("n", "<leader>o", "vi{")
+
+-- format current buffer
+vim.keymap.set("n", "<leader>w", vim.lsp.buf.format, {})
+
+-- UndotreeToggle
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- Select all text in the current buffer
+vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })

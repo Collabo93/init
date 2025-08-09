@@ -1,7 +1,5 @@
 -- change/add your projects here
-local project_dirs = {
-    os.getenv("LocalAppData") .. "/nvim",
-}
+local settings = require("settings")
 
 local function buildRgCmd(opts)
     local expression = "(" .. table.concat(opts.sign_list, "|") .. "):"
@@ -71,9 +69,9 @@ return {
     lazy = false,
     opts = {
         dashboard = {
-            width = 100,
+            width = 120,
             pane_gap = 20,
-            row = nil,
+            row = 6,
             autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
             preset = {
                 keys = {
@@ -120,6 +118,7 @@ return {
                 {
                     pane = 1,
                     indent = 0,
+                    padding = { 0, 10 },
                     { text = "",          padding = 2 },
                     { title = "Projects", padding = 1, indent = 25, align = "left" },
                     {
@@ -128,7 +127,7 @@ return {
                         padding = 2,
                         indent = 25,
                         align = "left",
-                        dirs = project_dirs,
+                        dirs = settings.project_dirs,
                     },
                     {
                         title = "TODO List",
@@ -144,7 +143,7 @@ return {
                                 limit = 5,
                                 match_comment_symbols = true,
                                 comment_symbols = { "--", "//", "#", "/\\*" },
-                                dirs = project_dirs,
+                                dirs = settings.project_dirs,
                                 sign_list = { "TODO", "ERROR", "FIX", "FIXME", "BUG" },
                             }
 

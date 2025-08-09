@@ -1,3 +1,5 @@
+local settings = require("settings")
+
 vim.g.mapleader = " "
 vim.g.undotree_DiffCommand = "FC"
 
@@ -29,7 +31,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("USERPROFILE") .. "\\.vim\\undodir"
+vim.opt.undodir = settings.undotree_dir
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -43,5 +45,4 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-local default_path = vim.fn.expand("~/AppData/local/nvim")
-vim.api.nvim_set_current_dir(default_path)
+vim.api.nvim_set_current_dir(settings.start_dir)

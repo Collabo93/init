@@ -1,5 +1,3 @@
--- https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/evil_lualine.lua
-
 local colors = require("catppuccin.palettes.mocha")
 local mode_color = {
     n = colors.red,
@@ -119,17 +117,11 @@ insert_left({
     cond = conditions.neo_tree_opened,
 })
 
--- insert_left({
--- 	function()
--- 		return "%="
--- 	end,
--- })
-
 insert_right({
     "diagnostics",
     sources = { "nvim_workspace_diagnostic" },
     section = { "error", "warn", "info" },
-    symbols = { error = " ", warn = " ", info = " " },
+    symbols = { error = " ", warn = " ", info = " " },
     diagnostics_color = {
         color_error = { fg = colors.red },
         color_warn = { fg = colors.yellow },

@@ -30,7 +30,5 @@ return {
                 null_ls.builtins.code_actions.gitsigns,
             },
         })
-
-        vim.keymap.set("n", "<leader>w", vim.lsp.buf.format, {})
     end,
 }
