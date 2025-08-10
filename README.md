@@ -130,25 +130,7 @@ npm install
 
 You can customize the configuration files to fit your preferences:
 
-#### **4.1 Default Path**
-
-Change the default path Neovim opens in:
-
-- **Windows:**  
-  `%LOCALAPPDATA%\nvim\lua\Collabo\set.lua`
-
-    Default entry:
-
-    ```lua
-    local default_path = vim.fn.expand("~/AppData/local/nvim")
-    ```
-
-- **Linux:**  
-  `~/.config/nvim/lua/Collabo/set.lua`
-
-    Change it to any desired directory.
-
-#### **4.2 Directory Setup**
+#### **4.1 Directory Setup**
 
 All directory-related settings, such as the default startup directory, project directories for the ToDo list, and the Undotree directory, can be configured in:
 
@@ -170,11 +152,11 @@ All directory-related settings, such as the default startup directory, project d
 
     Adjust the `start_dir` for the default Neovim startup directory, `project_dirs` for repositories to search for TODOs, and `undotree_dir` for the Undotree history storage.
 
-#### **4.3 copilot**
+#### **4.2 copilot**
 
 If you want to use GitHub Copilot, invoke the command `:Copilot setup` in Neovim to set up your GitHub account.
 
-#### **4.4 Background Image**
+#### **4.3 Background Image**
 
 By default, this setup has a transparent background to support a terminal background image. You have two options:
 
