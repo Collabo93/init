@@ -10,7 +10,7 @@ A custom Neovim setup I use on a daily basis. This repository mainly serves as m
 This section lists the plugins and language servers used in this Neovim configuration to enhance functionality and development experience.
 
 - **autopairs**: Automatically pairs brackets, quotes, and other characters. [Link](https://github.com/windwp/nvim-autopairs)
-- **colorschemes**: Provides various color schemes for Neovim.
+- **catppuccin**: pastel theme [Link](https://github.com/catppuccin/nvim)
 - **copilot**: AI-powered code completion. [Link](https://github.com/github/copilot.vim)
 - **flash**: Enhances search and navigation with visual cues. [Link](https://github.com/folke/flash.nvim)
 - **fugitive**: Git integration for Neovim. [Link](https://github.com/tpope/vim-fugitive)
@@ -60,15 +60,15 @@ The following table lists key mappings for this Neovim configuration:
 
 | Shortcut    | Mode   | Description                                 |
 | ----------- | ------ | ------------------------------------------- |
-| `<leader>q` | Normal | Exit current file                           |
-| `J`         | Visual | Move highlighted line down                  |
-| `K`         | Visual | Move highlighted line up                    |
-| `<C-d>`     | Normal | Scroll down and center cursor               |
-| `<C-u>`     | Normal | Scroll up and center cursor                 |
-| `<C-a>`     | Normal | Select all text in the current buffer                  |
 | `n`         | Normal | Next search result and center cursor        |
 | `N`         | Normal | Previous search result and center cursor    |
-| `<leader>p` | Visual | Paste without overwriting clipboard         |
+| `J`         | Visual | Move highlighted line down                  |
+| `K`         | Visual | Move highlighted line up                    |
+| `#`         | Visual | Comment highlighted lines                   |
+| `<C-d>`     | Normal | Scroll down and center cursor               |
+| `<C-u>`     | Normal | Scroll up and center cursor                 |
+| `<C-a>`     | Normal | Select all text in the current buffer       |
+| `<leader>q` | Normal | Exit current file                           |
 | `<leader>s` | Normal | Replace current word in file                |
 | `<leader>n` | Normal | Jump to next diagnostic error               |
 | `<leader>N` | Normal | Jump to previous diagnostic error           |
@@ -79,7 +79,7 @@ The following table lists key mappings for this Neovim configuration:
 | `<leader>o` | Normal | Select inside braces                        |
 | `<leader>w` | Normal | Format current buffer                       |
 | `<leader>u` | Normal | Toggle Undotree                             |
-| `#`         | Visual | Comment highlighted lines                   |
+| `<leader>p` | Visual | Paste without overwriting clipboard         |
 
 ## Installation
 
@@ -170,7 +170,11 @@ All directory-related settings, such as the default startup directory, project d
 
     Adjust the `start_dir` for the default Neovim startup directory, `project_dirs` for repositories to search for TODOs, and `undotree_dir` for the Undotree history storage.
 
-#### **4.3 Background Image**
+#### **4.3 copilot**
+
+If you want to use GitHub Copilot, invoke the command `:Copilot setup` in Neovim to set up your GitHub account.
+
+#### **4.4 Background Image**
 
 By default, this setup has a transparent background to support a terminal background image. You have two options:
 
