@@ -10,6 +10,9 @@ return {
                         base = "#14161B",
                     },
                 },
+                float = {
+                    transparent = true,
+                },
             })
             vim.cmd([[ colorscheme catppuccin-mocha ]])
         end,
