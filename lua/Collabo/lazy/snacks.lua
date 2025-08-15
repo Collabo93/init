@@ -90,7 +90,7 @@ return {
         dashboard = {
             width = 120,
             pane_gap = 20,
-            row = 6,
+            row = 4,
             autokeys = "1234567890",
             formats = {
                 key = { "" },

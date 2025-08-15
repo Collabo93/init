@@ -1,11 +1,11 @@
 -- Exit current file and navigate cursor to it
 vim.keymap.set("n", "<leader>q", function()
-    local current_file = vim.fn.expand("%:t")
-    vim.cmd.Ex()
+	local current_file = vim.fn.expand("%:t")
+	vim.cmd.Ex()
 
-    if current_file ~= "" then
-        vim.fn.search(current_file)
-    end
+	if current_file ~= "" then
+		vim.fn.search(current_file)
+	end
 end)
 
 -- move highlighted line up/down
@@ -30,8 +30,8 @@ vim.keymap.set("n", "<leader>N", vim.diagnostic.goto_prev)
 
 -- Open/Close splits screen, based on if there is already one
 vim.keymap.set("n", "<leader>v", function()
-    vim.cmd("wincmd v")
-    vim.cmd("wincmd l")
+	vim.cmd("wincmd v")
+	vim.cmd("wincmd l")
 end, { desc = "Move focus to the left window or close the right window" })
 
 -- move between splits
@@ -40,16 +40,16 @@ vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right
 
 -- show a quick highlight when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking (copying) ",
-    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+	desc = "Highlight when yanking (copying) ",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- comment highlight
 vim.keymap.set("v", "#", function()
-    vim.cmd.norm("gc")
+	vim.cmd.norm("gc")
 end)
 
 -- bracket and brace selection
