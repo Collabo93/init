@@ -9,5 +9,12 @@
     "printWidth": 120,
     "endOfLine": "lf",
     "phpVersion": "8.0",
-    "plugins": ["@prettier/plugin-php"]
+    "overrides": [
+        {
+            "files": ["*.php"],
+            "options": {
+                "plugins": ["@prettier/plugin-php"]
+            }
+        }
+    ]
 }
